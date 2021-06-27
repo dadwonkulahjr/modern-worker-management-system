@@ -1,0 +1,41 @@
+﻿@page
+@model WorkerModernManagementSystem.UI.Pages.Admin.Employee.IndexModel
+@{
+    ViewData["Title"] = "List Of Employees";
+}
+
+<div class="border backgroundWhite container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Employee List</h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <a asp-page="/Admin/Employee/Upsert" class="btn btn-primary"><i class="fas fa-plus">&nbsp;Create New</i></a>
+        </div>
+    </div>
+    <br /><br />
+          <div class="table-responsive">
+              <table id="DT_load" class="table table-striped" style="width:100%">
+                  <thead>
+                      <tr>
+                          <th>First name</th>
+                          <th>Last name</th>
+                          <th>Office Email</th>
+                          <th>Salary</th>
+                          <th>Date Hire</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+              </table>
+          </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="~/js/employee.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+
+
+}
