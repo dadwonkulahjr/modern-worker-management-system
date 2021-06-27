@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
 using System.Linq;
-using WorkerModernManagementSystem.UI.Models;
 using WorkerModernManagementSystem.UI.Services.IRepository;
 
 namespace WorkerModernManagementSystem.UI.Controllers
