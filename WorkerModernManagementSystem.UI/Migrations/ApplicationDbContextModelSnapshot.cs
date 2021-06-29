@@ -15,9 +15,9 @@ namespace WorkerModernManagementSystem.UI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.7");
+                .HasAnnotation("ProductVersion", "5.0.7")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -51,7 +51,7 @@ namespace WorkerModernManagementSystem.UI.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -140,7 +140,7 @@ namespace WorkerModernManagementSystem.UI.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -225,7 +225,7 @@ namespace WorkerModernManagementSystem.UI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("Department Id")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -264,10 +264,11 @@ namespace WorkerModernManagementSystem.UI.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateHire")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Date Hire");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -278,15 +279,16 @@ namespace WorkerModernManagementSystem.UI.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.Property<decimal>("Salary")
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Image");
+
+                    b.Property<decimal?>("Salary")
+                        .IsRequired()
                         .HasColumnType("decimal(18,0)");
 
                     b.HasKey("Id");
@@ -297,32 +299,42 @@ namespace WorkerModernManagementSystem.UI.Migrations
                         new
                         {
                             Id = 1,
-                            DateHire = new DateTime(2021, 6, 24, 18, 44, 44, 144, DateTimeKind.Local).AddTicks(2389),
+                            DateHire = new DateTime(2021, 6, 27, 22, 50, 45, 29, DateTimeKind.Local).AddTicks(6498),
                             Email = "iamtuse@iamtuse.com",
                             FirstName = "iamtuse",
-                            Image = "~/images/Iam_Tuse_Seven.jpg",
                             LastName = "theProgrammer",
+                            PhotoPath = "Iam_Tuse_Seven.jpg",
                             Salary = 450000m
                         },
                         new
                         {
                             Id = 2,
-                            DateHire = new DateTime(2021, 6, 24, 18, 44, 44, 148, DateTimeKind.Local).AddTicks(7692),
+                            DateHire = new DateTime(2021, 6, 27, 22, 50, 45, 32, DateTimeKind.Local).AddTicks(438),
                             Email = "tom@iamtuse.com",
                             FirstName = "Tom",
-                            Image = "~/images/david.png",
                             LastName = "Hasting",
+                            PhotoPath = "employees.png",
                             Salary = 50000m
                         },
                         new
                         {
                             Id = 3,
-                            DateHire = new DateTime(2021, 6, 24, 18, 44, 44, 148, DateTimeKind.Local).AddTicks(7777),
+                            DateHire = new DateTime(2021, 6, 27, 22, 50, 45, 32, DateTimeKind.Local).AddTicks(474),
                             Email = "iren@iamtuse.com",
                             FirstName = "Iren",
-                            Image = "~/images/sara.png",
                             LastName = "Collins",
+                            PhotoPath = "sara.png",
                             Salary = 25000m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateHire = new DateTime(2021, 6, 27, 22, 50, 45, 32, DateTimeKind.Local).AddTicks(478),
+                            Email = "wonkulahp@iamtuse.com",
+                            FirstName = "Precious",
+                            LastName = "Wonkulah",
+                            PhotoPath = "jjc.jpg",
+                            Salary = 100000m
                         });
                 });
 
@@ -332,7 +344,7 @@ namespace WorkerModernManagementSystem.UI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("Gender Id")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -361,13 +373,45 @@ namespace WorkerModernManagementSystem.UI.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorkerModernManagementSystem.UI.Models.MainMenuItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GenderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OccupationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("GenderId");
+
+                    b.HasIndex("OccupationId");
+
+                    b.ToTable("MainMenus");
+                });
+
             modelBuilder.Entity("WorkerModernManagementSystem.UI.Models.Occupation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("Occupation Id")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -460,6 +504,41 @@ namespace WorkerModernManagementSystem.UI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkerModernManagementSystem.UI.Models.MainMenuItem", b =>
+                {
+                    b.HasOne("WorkerModernManagementSystem.UI.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkerModernManagementSystem.UI.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkerModernManagementSystem.UI.Models.Gender", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkerModernManagementSystem.UI.Models.Occupation", "Occupation")
+                        .WithMany()
+                        .HasForeignKey("OccupationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Gender");
+
+                    b.Navigation("Occupation");
                 });
 #pragma warning restore 612, 618
         }

@@ -38,6 +38,10 @@ namespace WorkerModernManagementSystem.UI
                 opt.LowercaseQueryStrings = true;
                 opt.LowercaseUrls = true;
             });
+            services.AddOpenApiDocument(options =>
+            {
+                options.Title = "Modern Worker Management System Api";
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -56,7 +60,13 @@ namespace WorkerModernManagementSystem.UI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
+
             app.UseRouting();
+
+
+
 
             app.UseAuthentication();
             app.UseAuthorization();

@@ -24,20 +24,20 @@ namespace WorkerModernManagementSystem.UI.Services.Repository
         {
             IQueryable<T> myQuery = _dbSet;
 
-            if(fiterEntityType != null)
+            if (fiterEntityType != null)
             {
                 myQuery = myQuery.Where(fiterEntityType);
             }
 
-            if(entityNavigationProperties != null)
+            if (entityNavigationProperties != null)
             {
-                foreach (var property in entityNavigationProperties.Split(new char[] { ','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var property in entityNavigationProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    myQuery.Include(property);
+                    myQuery = myQuery.Include(property);
                 }
             }
 
-            if(sortEntityType != null)
+            if (sortEntityType != null)
             {
                 return sortEntityType(myQuery).ToList();
             }

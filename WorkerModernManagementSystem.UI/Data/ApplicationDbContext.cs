@@ -11,6 +11,8 @@ namespace WorkerModernManagementSystem.UI.Data
         public DbSet<Department> Department { get; set; }
         public DbSet<Gender> Gender { get; set; }
         public DbSet<Occupation> Occupation { get; set; }
+
+        public DbSet<MainMenuItem> MainMenus { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

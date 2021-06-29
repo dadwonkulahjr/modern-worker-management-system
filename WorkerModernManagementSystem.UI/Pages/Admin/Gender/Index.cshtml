@@ -1,0 +1,33 @@
+﻿@page
+@model WorkerModernManagementSystem.UI.Pages.Admin.Gender.IndexModel
+@{
+    ViewData["Title"] = "Gender List";
+}
+
+<div class="border backgroundWhite container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Gender List</h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <a asp-page="/admin/gender/Upsert" class="btn btn-primary"><i class="fas fa-plus">&nbsp;Create New</i></a>
+        </div>
+    </div>
+    <br /><br />
+          <div class="table-responsive">
+              <table id="DT_load" class="table table-striped" style="width:100%">
+                  <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+              </table>
+          </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/gender.js"></script>
+}

@@ -1,0 +1,152 @@
+﻿@page
+@model WorkerModernManagementSystem.UI.Pages.Admin.MenuItem.UpsertModel
+@{
+    ViewData["Title"] = "Update Employee Details";
+}
+
+
+<form method="post" enctype="multipart/form-data">
+    <div class="container">
+
+        @if (Model.MenuItemVM.MenuItem.Id != 0)
+        {
+            <input type="hidden" asp-for="@Model.MenuItemVM.MenuItem.Id" />
+            <input type="hidden" asp-for="@Model.MenuItemVM.MenuItem.Employee.Id" />
+          
+        }
+        <div class="row px-2 mx-2 backgroundWhite border">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
+                <h2 class="text-primary">Update Employee</h2>
+            </div>
+
+            <div class="col-8 pt-3">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemVM.MenuItem.Employee.FirstName"></label>
+                    </div>
+                    <div class="col-9">
+                        <input asp-for="MenuItemVM.MenuItem.Employee.FirstName" class="form-control" placeholder="First name..." />
+                        <span asp-validation-for="MenuItemVM.MenuItem.Employee.FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemVM.MenuItem.Employee.LastName"></label>
+                    </div>
+                    <div class="col-9">
+                        <input asp-for="MenuItemVM.MenuItem.Employee.LastName" class="form-control" placeholder="Last name..." />
+                        <span asp-validation-for="MenuItemVM.MenuItem.Employee.LastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemVM.MenuItem.Employee.Email"></label>
+                    </div>
+                    <div class="col-9">
+                        <input asp-for="MenuItemVM.MenuItem.Employee.Email" class="form-control" />
+                        <span asp-validation-for="MenuItemVM.MenuItem.Employee.Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemVM.MenuItem.Employee.Salary"></label>
+                    </div>
+                    <div class="col-9">
+                        <input asp-for="MenuItemVM.MenuItem.Employee.Salary" class="form-control" />
+                        <span asp-validation-for="MenuItemVM.MenuItem.Employee.Salary" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemVM.MenuItem.Employee.DateHire"></label>
+                    </div>
+                    <div class="col-9">
+                        <input asp-for="MenuItemVM.MenuItem.Employee.DateHire" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="MenuItemVM.MenuItem.Employee.DateHire" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemVM.MenuItem.GenderId"></label>
+                    </div>
+                    <div class="col-9">
+                        @Html.DropDownListFor(m => m.MenuItemVM.MenuItem.GenderId,
+                            Model.MenuItemVM.GenderDropdownList,
+                            "-Please select a Gender-",
+                            new { @class = "form-control" })
+                        <span asp-validation-for="MenuItemVM.MenuItem.GenderId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemVM.MenuItem.DepartmentId"></label>
+                    </div>
+                    <div class="col-9">
+                        @Html.DropDownListFor(m => m.MenuItemVM.MenuItem.DepartmentId,
+                            Model.MenuItemVM.DepartmentDropdownList,
+                            "-Please select a Department-",
+                            new { @class = "form-control" })
+                        <span asp-validation-for="MenuItemVM.MenuItem.DepartmentId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="MenuItemVM.MenuItem.OccupationId"></label>
+                    </div>
+                    <div class="col-9">
+                        @Html.DropDownListFor(m => m.MenuItemVM.MenuItem.OccupationId,
+                            Model.MenuItemVM.OccupationDropdownList,
+                            "-Please select a Occupation-",
+                            new { @class = "form-control" })
+                        <span asp-validation-for="MenuItemVM.MenuItem.OccupationId" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-9 offset-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary form-control">Update</button>
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="./Index" class="btn btn-success form-control">Back To List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+                //tinymce.init({
+                //    selector: 'textarea',
+                //    plugins: 'lists',
+                //    menubar: 'file edit format'
+                //});
+
+                //function validateInput() {
+                //    var doc = document.getElementById('uploadBox');
+                //    if (doc.value == '') {
+                //        swal('Error', 'Please select an image', 'error');
+                //        return false;
+                //    }
+                //    return true;
+                //}
+
+    </script>
+
+}
+

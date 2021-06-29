@@ -1,6 +1,8 @@
 ﻿@page
 @model WorkerModernManagementSystem.UI.Pages.Admin.Employee.UpsertModel
 @{
+
+    string photoPath = "~/images/iamtuse_upload/" + (Model.EmployeeObj.PhotoPath ?? "jjc.jpg");
     if (Model.EmployeeObj.Id != 0)
     {
         ViewData["Title"] = "Update Employee";
@@ -18,8 +20,9 @@
         @if (Model.EmployeeObj.Id != 0)
         {
             <input type="hidden" asp-for="@Model.EmployeeObj.Id" />
+            <input type="hidden" asp-for="@Model.EmployeeObj.PhotoPath" />
         }
-        <div class="row px-2 mx-2 backgroundWhite border shadow">
+        <div class="row px-2 mx-2 backgroundWhite border">
             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
             <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
                 <h2 class="text-primary">@(Model.EmployeeObj.Id != 0 ? "Update Employee": "Create Employee")</h2>
@@ -64,21 +67,38 @@
                         <span asp-validation-for="@Model.EmployeeObj.Salary" class="text-danger"></span>
                     </div>
                 </div>
+                @if (Model.EmployeeObj.Id == 0)
+                {
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label asp-for="@Model.EmployeeObj.DateHire"></label>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="@Model.EmployeeObj.DateHire" class="form-control" />
+                            <span asp-validation-for="@Model.EmployeeObj.DateHire" class="text-danger"></span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label asp-for="@Model.EmployeeObj.DateHire"></label>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="@Model.EmployeeObj.DateHire" class="form-control" readonly="readonly" />
+                            <span asp-validation-for="@Model.EmployeeObj.DateHire" class="text-danger"></span>
+                        </div>
+                    </div>
+                }
+
+
                 <div class="form-group row">
                     <div class="col-3">
-                        <label asp-for="@Model.EmployeeObj.DateHire"></label>
+                        <label asp-for="@Model.EmployeeObj.PhotoPath"></label>
                     </div>
                     <div class="col-9">
-                        <input asp-for="@Model.EmployeeObj.DateHire" class="form-control" placeholder="Date hire..." />
-                        <span asp-validation-for="@Model.EmployeeObj.DateHire" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-3">
-                        <label asp-for="@Model.EmployeeObj.Image"></label>
-                    </div>
-                    <div class="col-9">
-                        <input type="file" asp-for="@Model.EmployeeObj.Image" name="files" id="uploadBox" />
+                        <input asp-for="Photo" id="uploadBox" />
                     </div>
                 </div>
 
@@ -94,7 +114,9 @@
                                 {
                                     <button type="submit" class="btn btn-primary form-control" onclick="return validateInput()">Create</button>
                                 }
-                               
+                                @*<button type="submit" class="btn btn-primary form-control">
+                                    @(Model.MenuItemVM.MenuItem.Id != 0 ? "Update" : "Create")
+                                </button>*@
                             </div>
                             <div class="col-6">
                                 <a asp-page="./Index" class="btn btn-success form-control">Back To List</a>
@@ -103,10 +125,10 @@
                     </div>
                 </div>
             </div>
-            @if (Model.EmployeeObj.Image != null)
+            @if (photoPath != null)
             {
                 <div class="col-4 p4">
-                    <img src="@Model.EmployeeObj.Image" class="rounded-circle img-fluid" asp-append-version="true" />
+                    <img src="@photoPath" class="rounded-circle img-fluid" asp-append-version="true" />
                 </div>
             }
         </div>
@@ -137,4 +159,3 @@
     </script>
 
 }
-

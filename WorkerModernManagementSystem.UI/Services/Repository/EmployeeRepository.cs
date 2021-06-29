@@ -19,22 +19,22 @@ namespace WorkerModernManagementSystem.UI.Services.Repository
         {
             return _applicationDbContext.Employee.Select(s => new SelectListItem
             {
-                Text = s.FullName,
+                Text = s.FirstName,
                 Value = s.Id.ToString()
             });
         }
         public void Update(Employee employeeToUpdate)
         {
             var findEmpFromDb = _applicationDbContext.Employee.Find(employeeToUpdate.Id);
-            if(findEmpFromDb != null)
+            if (findEmpFromDb != null)
             {
                 findEmpFromDb.FirstName = employeeToUpdate.FirstName;
                 findEmpFromDb.LastName = employeeToUpdate.LastName;
                 findEmpFromDb.Email = employeeToUpdate.Email;
                 findEmpFromDb.Salary = employeeToUpdate.Salary;
-                if (findEmpFromDb.Image != null)
+                if (employeeToUpdate.PhotoPath != null)
                 {
-                    findEmpFromDb.Image = employeeToUpdate.Image;
+                    findEmpFromDb.PhotoPath = employeeToUpdate.PhotoPath;
                 }
                 findEmpFromDb.DateHire = employeeToUpdate.DateHire;
                 _applicationDbContext.SaveChanges();

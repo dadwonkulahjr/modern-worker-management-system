@@ -15,8 +15,8 @@ namespace WorkerModernManagementSystem.UI.Models
         public string Email { get; set; }
         [Required, DataType(DataType.Currency),Column(TypeName = "decimal(18, 0)")]
         public decimal? Salary { get; set; }
-        //[Required]
-        public string Image { get; set; }
+        [Display(Name ="Image"),Column(name:"Image")]
+        public string PhotoPath { get; set; }
         [NotMapped]
         public string FullName
         {
@@ -25,7 +25,9 @@ namespace WorkerModernManagementSystem.UI.Models
                 return FirstName + " " + LastName;
             }
         }
-        [DataType(DataType.Date), Required,DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true), Display(Name ="Date Hire")]
-        public DateTime? DateHire { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true),
+            Display(Name ="Date Hire"), Column(name:"Date Hire")]
+        [DataType(DataType.Date)]
+        public DateTime DateHire { get; set; }
     }
 }

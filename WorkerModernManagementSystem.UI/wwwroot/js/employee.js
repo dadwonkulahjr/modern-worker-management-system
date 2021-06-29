@@ -10,14 +10,22 @@ function loadList() {
             'url': '/api/employees',
             'type': 'GET',
             'dataType': 'json',
-            'dataSrc': 'data'
+           
         },
         'columns': [
             { 'data': 'firstName', 'width': '40%' },
             { 'data': 'lastName', 'width': '40%' },
-            { 'data': 'email', 'width': '40%' },
-            { 'data': 'salary', 'width': '40%' },
-            { 'data': 'dateHire', 'width': '40%' },
+            { 'data': 'email', 'width': '25%' },
+            {
+                'data': 'salary',
+                'render': $.fn.dataTable.render.number(',', '.', 2, '$'),
+                'width':'25%'
+            },
+            {
+                'data': 'dateHire',
+                'width': '25%'
+               
+            },
             {
                 'data': 'id',
                 'render': function (data) {

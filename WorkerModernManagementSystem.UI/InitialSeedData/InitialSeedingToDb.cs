@@ -34,7 +34,7 @@ namespace WorkerModernManagementSystem.UI.InitialSeedData
                     Email = "iamtuse@iamtuse.com",
                     DateHire = DateTime.Now,
                     Salary = 450000,
-                    Image = "~/images/Iam_Tuse_Seven.jpg"
+                    PhotoPath = "Iam_Tuse_Seven.jpg"
                 },
                 new()
                 {
@@ -44,7 +44,7 @@ namespace WorkerModernManagementSystem.UI.InitialSeedData
                     Email = "tom@iamtuse.com",
                     DateHire = DateTime.Now,
                     Salary = 50000,
-                    Image = "~/images/david.png"
+                    PhotoPath = "employees.png"
                 },
                 new()
                 {
@@ -54,7 +54,17 @@ namespace WorkerModernManagementSystem.UI.InitialSeedData
                     Email = "iren@iamtuse.com",
                     DateHire = DateTime.Now,
                     Salary = 25000,
-                    Image = "~/images/sara.png"
+                    PhotoPath = "sara.png"
+                },
+                 new()
+                {
+                    Id =4,
+                    FirstName = "Precious",
+                    LastName = "Wonkulah",
+                    Email = "wonkulahp@iamtuse.com",
+                    DateHire = DateTime.Now,
+                    Salary = 100000,
+                    PhotoPath = "jjc.jpg"
                 },
             };
         }

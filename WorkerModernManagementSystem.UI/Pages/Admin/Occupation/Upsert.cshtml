@@ -1,0 +1,62 @@
+﻿@page
+@model WorkerModernManagementSystem.UI.Pages.Admin.Occupation.UpsertModel
+@{
+    if (Model.OccupationObj.Id == 0)
+    {
+        ViewData["Title"] = "Create Occupation";
+    }
+    else
+    {
+        ViewData["Title"] = "Update Occupation";
+    }
+}
+
+<form method="post" asp-page="upsert">
+    <div class="container">
+
+        @if (Model.OccupationObj.Id != 0)
+        {
+            <input type="hidden" asp-for="@Model.OccupationObj.Id" />
+        }
+        <div class="row px-2 mx-2 backgroundWhite border">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
+                <h2 class="text-primary">@(Model.OccupationObj.Id != 0 ? "Update Occupation": "Create Occupation")</h2>
+            </div>
+
+            <div class="col-8 pt-3">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="OccupationObj.Name"></label>
+                    </div>
+                    <div class="col-9">
+                        <input asp-for="OccupationObj.Name" class="form-control" placeholder="Occupation Name..." />
+                        <span asp-validation-for="OccupationObj.Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-9 offset-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary form-control">
+                                    @(Model.OccupationObj.Id != 0 ? "Update" : "Create")
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="./Index" class="btn btn-success form-control">Back To List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+
+}

@@ -19,7 +19,7 @@ namespace WorkerModernManagementSystem.UI.Pages
 
         public IActionResult OnGet()
         {
-            return RedirectToPage("./Admin/Employee/Index");
+            return RedirectToPage("./Employee/Home/Index");
         }
     }
 }

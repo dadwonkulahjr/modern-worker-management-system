@@ -11,8 +11,16 @@ namespace WorkerModernManagementSystem.UI.Services.Repository
         {
             _applicationDbContext = applicationDbContext;
             Employee = new EmployeeRepository(applicationDbContext);
+            Department = new DepartmentRepository(applicationDbContext);
+            Gender = new GenderRepository(applicationDbContext);
+            Occupation = new OccupationRepository(applicationDbContext);
+            MenuItem = new MenuItemRepository(applicationDbContext);
         }
         public IEmployeeRepository Employee { get; private set; }
+        public IGenderRepository Gender { get; private set; }
+        public IDepartmentRepository Department { get; private set; }
+        public IOccupationRepository Occupation { get; private set; }
+        public IMenuItemRepository MenuItem { get; private set; }
 
         public void Dispose()
         {
